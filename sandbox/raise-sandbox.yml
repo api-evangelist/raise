@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.raise.com/
+description: >-
+  Raise Commerce API test/sandbox surface, from docs.raise.com. Raise provides a
+  public Playground for proof-of-concept work plus a registered-client Sandbox
+  whose operations and data are production-like but do not affect live data. No
+  published magic test card numbers were found; credentials are provisioned per
+  client through the sandbox portal.
+docs:
+- https://docs.raise.com/
+environments:
+- name: playground
+  base_url: https://playground-api.raise.com/business/v2
+  access: >-
+    Publicly accessible; usable for a proof-of-concept integration prior to any
+    formal agreement.
+- name: sandbox
+  base_url: https://sandbox-commerce-api.raise.com/business/v2
+  portal: https://sandbox-portal.raise.com
+  access: >-
+    Registered clients. Operations and data are production-like for testing and
+    development; does not affect live data.
+credentials:
+  notes: >-
+    Sandbox Client ID / Secret are managed through the Raise Client Portal
+    (sandbox-portal.raise.com). No public verbatim test tokens or test card
+    numbers are published in the documentation.
+test_vs_live_separation:
+  mechanism: separate base hosts + separate portal-issued credentials per environment

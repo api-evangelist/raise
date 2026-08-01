@@ -1,0 +1,61 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.raise.com/
+docs: https://docs.raise.com/
+description: >-
+  Raise Commerce API (business/v2) authentication. All requests are authorized
+  with an OAuth 2.0 bearer access token. Two token-issuance flows exist: a
+  server-to-server flow (Tokens resource, HTTP Basic with Client ID + Secret)
+  and an app/web customer flow (Auth resource, with a verification method).
+summary:
+  types:
+  - oauth2
+  - http
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: serverBearer
+  type: oauth2
+  flow: clientCredentials
+  description: >-
+    Server clients POST to /business/v2/tokens using HTTP Basic auth
+    (Authorization: Basic base64(client_id:client_secret)) to obtain a bearer
+    access token. The token is then sent on all subsequent calls as
+    Authorization: Bearer {access_token}. Tokens issued via /tokens expire in
+    15 minutes.
+  token_url: https://commerce-api.raise.com/business/v2/tokens
+  token_expiry: 15 minutes
+  sources:
+  - https://docs.raise.com/
+- name: customerBearer
+  type: oauth2
+  flow: clientCredentials
+  description: >-
+    App/Web clients POST to /business/v2/auth/tokens with a customer
+    verification method to obtain a bearer token (valid up to 6 months). Auth
+    methods are registered/updated via POST and PATCH /business/v2/auth/methods
+    and support SR25519 key pair, RSA key pair, SMS one-time code, and TOTP.
+  token_url: https://commerce-api.raise.com/business/v2/auth/tokens
+  token_expiry: 6 months
+  verification_methods:
+  - SR25519 key pair
+  - RSA key pair
+  - SMS verification code
+  - TOTP
+  sources:
+  - https://docs.raise.com/
+required_headers:
+- name: Authorization
+  value: Bearer {access_token}
+- name: Content-Type
+  value: application/json
+- name: X-Country
+  value: ISO 3166-1 alpha-2 country (default US)
+- name: X-Currency
+  value: ISO 4217 currency (default USD)
+- name: X-CustomerID
+  value: customer id (auth endpoints)
+notes: >-
+  Production and sandbox credentials are managed through the Raise Client Portal
+  (portal.raise.com / sandbox-portal.raise.com). A public Playground environment
+  is available without formal onboarding.

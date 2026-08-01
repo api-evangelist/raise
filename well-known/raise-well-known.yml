@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: searched
+source: probe of /.well-known/ on Raise hosts
+description: >-
+  Result of probing the Raise API and website hosts for /.well-known/ discovery
+  documents. None returned 200 in this pass; this file records the honest
+  negative result. No WellKnown pointer is wired since no catalog was found.
+hosts:
+- host: https://commerce-api.raise.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://www.raise.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404

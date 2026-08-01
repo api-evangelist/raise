@@ -1,0 +1,54 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.raise.com/
+description: >-
+  Error-code registry for the Raise Commerce API (business/v2), captured from
+  docs.raise.com. Errors are returned with an application error code and an
+  associated HTTP status. This is the non-payments-network sibling of a decline
+  catalog: Raise gift-card purchase failures surface as these codes rather than
+  card-network decline codes.
+format: application-error-codes
+http_statuses:
+- 200
+- 201
+- 400
+- 401
+- 403
+- 406
+- 412
+- 422
+- 500
+- 503
+errors:
+- code: ErrCodeInvalidDeviceUUID
+  meaning: Invalid or missing Client ID.
+- code: ErrCodeInternal
+  meaning: Internal server error.
+- code: ErrCodeInvalidTransaction
+  meaning: Invalid transaction object.
+- code: ErrCodeMissingAuthorization
+  meaning: Missing signature or required authorization headers.
+- code: ErrCodeUnauthorized
+  meaning: Unauthorized access.
+- code: ErrCodeUnauthenticated
+  meaning: Authentication failed.
+- code: ErrCodeInvalidSignature
+  meaning: Invalid request signature.
+- code: ErrCodeBadRequest
+  meaning: Invalid request format.
+- code: ErrCodeFailedRisk
+  meaning: Risk verification failed.
+- code: ErrCodeBrandDisabled
+  meaning: Requested brand is unavailable/disabled.
+- code: ErrCodeDailyPurchaseLimit
+  meaning: User daily purchase limit exceeded.
+- code: ErrCodeNotFound
+  meaning: Resource not found.
+- code: ErrCodeTooManyRequests
+  meaning: Rate limit exceeded.
+- code: ErrCodePaginationLimit
+  meaning: Invalid pagination parameters.
+- code: ErrCodeAccountDeactivated
+  meaning: Account is inactive/deactivated.
+- code: ErrCodeInsufficientFunds
+  meaning: Insufficient account balance to complete the purchase.

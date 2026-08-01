@@ -1,0 +1,76 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.raise.com/
+description: >-
+  Cross-cutting request/response conventions for the Raise Commerce API
+  (business/v2): authentication style, idempotency, pagination, metadata,
+  currency/minor-unit handling, sorting/filtering, the JSON:API-style data
+  envelope, and error semantics. Captured from docs.raise.com.
+base_url: https://commerce-api.raise.com/business/v2
+api_style: REST over HTTPS, JSON request/response, JSON:API-style data envelope
+
+authentication:
+  scheme: OAuth 2.0 bearer access token (server client-credentials, or app/web auth flow)
+  docs: https://docs.raise.com/
+  detail: authentication/raise-authentication.yml
+
+envelope:
+  request: '{ "data": { "type": <resource_type>, "id": <id>, "attributes": { ... } } }'
+  response: '{ "data": { "type": <resource_type>, "id": <id>, "attributes": { ... } } }'
+  list_response: '{ "data": [ ... ], "meta": { "total_results": <int> } }'
+
+idempotency:
+  supported: true
+  mechanism: client_order_id field on transaction (POST /transactions) requests
+  applies_to: Transaction creation (gift card purchases)
+  behavior: >-
+    Retrying a request with an identical client_order_id returns the identical
+    original response, preventing duplicate transactions/purchases.
+  docs: https://docs.raise.com/
+
+pagination:
+  style: page-based
+  request_params:
+    page[size]: results per page (max 500, default 10)
+    page[number]: 0-based page index (default 0)
+  response_fields:
+    meta.total_results: total number of matching results
+  docs: https://docs.raise.com/
+
+sorting:
+  request_params:
+    sort[field]: field name (e.g. name, popularity, created_at)
+    sort[order]: ASC or DESC
+
+filtering:
+  notes: >-
+    Endpoint-specific query parameters (e.g. brand query, customer id, state).
+    Date-range filters use RFC 3339 timestamps with a maximum 90-day span.
+
+metadata:
+  supported: true
+  description: >-
+    Optional key-value metadata on transactions/requests. Field names are
+    alphanumeric + underscores, max 64 chars, and cannot start with an
+    underscore. Value types: STRING (max 256 chars) and DATE (RFC 3339).
+
+currency:
+  representation: integer minor units (smallest denomination)
+  examples:
+    'USD $123.00': 12300
+    'JPY ¥123': 123
+    'KWD 1.234': 1234
+  supported: 180+ currencies; X-Currency header selects currency, default USD
+
+versioning:
+  scheme: uri-path
+  current: v2
+  detail: lifecycle/raise-lifecycle.yml
+
+error_envelope:
+  shape: JSON error object carrying a Raise error code (see errors/)
+  detail: errors/raise-error-codes.yml
+
+rate_limiting:
+  signaled_via: ErrCodeTooManyRequests error / HTTP 429-class response
+  notes: Specific numeric limits are not published in the public documentation.

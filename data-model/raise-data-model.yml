@@ -1,0 +1,58 @@
+generated: '2026-07-20'
+method: derived
+source: https://docs.raise.com/
+description: >-
+  Entity-relationship model for the Raise Commerce API, derived from the
+  documented resource types and their relationships. Amounts are integer minor
+  units; identifiers are opaque strings.
+entities:
+- name: brand
+  description: A retailer whose gift cards are sold on Raise (variable or fixed load).
+  endpoints: [GET /brands, GET /brands/:id]
+  belongs_to: [category, country]
+- name: category
+  description: A grouping of brands.
+  endpoints: [GET /categories]
+  has_many: [brand]
+- name: country
+  description: A supported territory with currency and available brand count.
+  endpoints: [GET /countries]
+  has_many: [brand]
+- name: transaction
+  description: A gift card purchase order; idempotent on client_order_id.
+  endpoints: [POST /transactions, GET /transactions, GET /transactions/:id]
+  has_many: [card]
+  belongs_to: [brand]
+- name: card
+  description: >-
+    An individual purchased gift card instance with balance, credentials, and
+    redemption/wallet details.
+  endpoints: [GET /cards, PATCH /cards/:id]
+  belongs_to: [transaction, brand]
+- name: balance
+  description: Account funding balance in USD cents.
+  endpoints: [GET /balance]
+- name: token
+  description: OAuth 2.0 bearer access token (server or customer auth).
+  endpoints: [POST /tokens, POST /auth/tokens]
+relationships:
+- from: transaction
+  to: brand
+  type: belongs_to
+  via: brand
+- from: transaction
+  to: card
+  type: has_many
+  via: cards
+- from: card
+  to: transaction
+  type: belongs_to
+  via: transaction
+- from: brand
+  to: category
+  type: belongs_to
+  via: category
+- from: brand
+  to: country
+  type: belongs_to
+  via: country

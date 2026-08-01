@@ -1,0 +1,42 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: https://docs.raise.com/
+description: >-
+  Candidate MCP tool surface derived from the documented Raise Commerce API
+  operations. No official hosted/remote Raise MCP server was found. These tools
+  are a proposal, one per documented operation.
+server:
+  name: raise
+  transport: http
+tools:
+- name: list_brands
+  description: List gift card brands (pagination, sorting, search).
+  source_operation: GET /business/v2/brands
+- name: get_brand
+  description: Retrieve a single brand's details.
+  source_operation: GET /business/v2/brands/:id
+- name: list_categories
+  description: List brand categories.
+  source_operation: GET /business/v2/categories
+- name: list_countries
+  description: List supported countries with currency and brand counts.
+  source_operation: GET /business/v2/countries
+- name: get_balance
+  description: Retrieve account funding balance.
+  source_operation: GET /business/v2/balance
+- name: create_transaction
+  description: Purchase a gift card (idempotent on client_order_id).
+  source_operation: POST /business/v2/transactions
+- name: list_transactions
+  description: List transactions (pagination, sorting, filtering).
+  source_operation: GET /business/v2/transactions
+- name: get_transaction
+  description: Retrieve a single transaction.
+  source_operation: GET /business/v2/transactions/:id
+- name: list_cards
+  description: List gift card instances (pagination, sorting, filtering).
+  source_operation: GET /business/v2/cards
+- name: update_card
+  description: Perform a card action (balance check, mark redeemed, update balance).
+  source_operation: PATCH /business/v2/cards/:id

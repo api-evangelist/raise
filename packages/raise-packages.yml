@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.raise.com/
+description: >-
+  First-party client tooling for the Raise Commerce API. No official published
+  SDK client library (npm / PyPI / Maven / NuGet / RubyGems / etc.) was found in
+  the registries or docs as of this pass. Raise publishes a Postman collection
+  and documents cURL and Node.js (crypto) request examples.
+packages: []
+collections:
+- name: Raise Enterprise API (Postman)
+  type: postman
+  official: true
+  notes: >-
+    Postman collection referenced in the Raise API documentation
+    (workspace/raise-enterprise-api). Public workspace URL not captured verbatim
+    in this pass.
+examples:
+- language: shell
+  tool: curl
+  official: true
+  source: https://docs.raise.com/
+- language: javascript
+  tool: Node.js (crypto / @polkadot/util-crypto for SR25519 signing)
+  official: true
+  source: https://docs.raise.com/

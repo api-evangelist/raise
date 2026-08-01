@@ -1,0 +1,39 @@
+# Raise
+
+> Raise is a digital gift card marketplace and commerce platform. Raise for Business exposes the Raise Commerce API (business/v2) — a REST/JSON API to browse retailer gift card brands, purchase fixed- and variable-load gift cards, manage card balances, and reconcile transactions across 180+ currencies. Auth is OAuth 2.0 bearer tokens; requests use a JSON:API-style data envelope with client_order_id idempotency.
+
+## APIs
+- [Raise Commerce API docs](https://docs.raise.com/): REST/JSON gift card commerce API
+- [API Reference](https://docs.raise.com/index.html): full endpoint reference
+- Production base URL: https://commerce-api.raise.com/business/v2
+- Sandbox base URL: https://sandbox-commerce-api.raise.com/business/v2
+- Playground base URL: https://playground-api.raise.com/business/v2
+
+## Operations
+- GET /brands, GET /brands/:id — list and retrieve gift card brands
+- GET /categories — list brand categories
+- GET /countries — list supported countries and currencies
+- GET /balance — account funding balance
+- POST /transactions — purchase gift cards (idempotent on client_order_id)
+- GET /transactions, GET /transactions/:id — list and retrieve transactions
+- GET /cards — list gift card instances
+- PATCH /cards/:id — card actions (balance check, mark redeemed, update balance)
+- POST /tokens, POST /auth/tokens — obtain OAuth 2.0 bearer tokens
+
+## Specs & Artifacts
+- [Authentication](authentication/raise-authentication.yml)
+- [Conventions](conventions/raise-conventions.yml)
+- [Error codes](errors/raise-error-codes.yml)
+- [Lifecycle](lifecycle/raise-lifecycle.yml)
+- [Sandbox](sandbox/raise-sandbox.yml)
+- [Conformance](conformance/raise-conformance.yml)
+- [Data model](data-model/raise-data-model.yml)
+- [Packages](packages/raise-packages.yml)
+- [MCP (candidate)](mcp/raise-mcp.yml)
+
+## Company
+- [Website](https://www.raise.com)
+- [Client Portal](https://portal.raise.com)
+- [Business privacy policy](https://www.raise.com/business/privacy-policy/)
+- Support: support@raise.com
+- Backed by: Accel, PayPal, NEA

@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.raise.com/
+description: >-
+  Lifecycle and versioning posture for the Raise Commerce API, from
+  docs.raise.com. The current API is business/v2; the docs describe a v1 → v2
+  migration path for existing clients.
+versioning:
+  scheme: uri-path
+  current: v2
+  path_segment: /business/v2
+  docs: https://docs.raise.com/
+deprecation:
+  policy_url: null
+  notes: >-
+    Docs reference migrating clients from v1 to v2; no formal dated deprecation
+    or Sunset-header policy is published publicly.
+sla:
+  url: null
+status_page: null
+environments:
+- name: playground
+  base_url: https://playground-api.raise.com/business/v2
+  access: public (proof-of-concept, no formal agreement)
+- name: sandbox
+  base_url: https://sandbox-commerce-api.raise.com/business/v2
+  portal: https://sandbox-portal.raise.com
+  access: registered clients
+- name: production
+  base_url: https://commerce-api.raise.com/business/v2
+  portal: https://portal.raise.com
+  access: registered clients
