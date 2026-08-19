@@ -2,10 +2,8 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: https://docs.raise.com/
-description: >-
-  Candidate MCP tool surface derived from the documented Raise Commerce API
-  operations. No official hosted/remote Raise MCP server was found. These tools
-  are a proposal, one per documented operation.
+description: Candidate MCP tool surface derived from the documented Raise Commerce API operations. No
+  official hosted/remote Raise MCP server was found. These tools are a proposal, one per documented operation.
 server:
   name: raise
   transport: http
@@ -40,3 +38,9 @@ tools:
 - name: update_card
   description: Perform a card action (balance check, mark redeemed, update balance).
   source_operation: PATCH /business/v2/cards/:id
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census
