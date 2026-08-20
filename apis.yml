@@ -46,6 +46,14 @@ tags:
 - Payments
 - Rewards
 - Marketplace
+tags_raw:
+- Company
+- Consumer
+- Gift Cards
+- Commerce
+- Payments
+- Rewards
+- Marketplace
 - API
 apis:
 - name: Raise Commerce API
